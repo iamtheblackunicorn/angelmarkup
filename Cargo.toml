@@ -1,0 +1,17 @@
+[package]
+name = "aml"
+version = "1.0.0"
+edition = "2021"
+authors = ["Alexander Abraham <youreccentricity@outlook.com>"]
+description= "Simple data storage with no drama."
+homepage = "https://github.com/iamtheblackunicorn/aml"
+repository = "https://github.com/iamtheblackunicorn/aml"
+documentation = "https://github.com/iamtheblackunicorn/aml"
+readme = "README.markdown"
+keywords = ["command-line-utilities"]
+categories = ["command-line-utilities"]
+exclude = ["/.github", "sample"]
+
+[dependencies]
+regex = "1.5.5"
+serde_json = "1.0.79"
