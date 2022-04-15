@@ -138,7 +138,6 @@ pub fn serialize(src: String) -> HashMap<String, String> {
             let next_index: usize = index+1;
             let key: String = lexed_tokens_clone_one[last_index].clone().value;
             let value: String = lexed_tokens_clone_two[next_index].clone().value;
-            println!("{} : {}", key.clone(), value.clone());
             result.insert(key,value);
         }
         else {}
