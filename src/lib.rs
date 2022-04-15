@@ -69,7 +69,6 @@ pub fn pattern_pool() -> HashMap<String, Regex>{
     let mut pool: HashMap<String, Regex> = HashMap::new();
     pool.insert(String::from("ENTITY"), Regex::new(r"'(.*)'").unwrap());
     pool.insert(String::from("ASSIGN"), Regex::new(r"(=>)").unwrap());
-    pool.insert(String::from("COMMENT"), Regex::new(r"(//.*)").unwrap());
     return pool;
 }
 
@@ -139,6 +138,7 @@ pub fn serialize(src: String) -> HashMap<String, String> {
             let next_index: usize = index+1;
             let key: String = lexed_tokens_clone_one[last_index].clone().value;
             let value: String = lexed_tokens_clone_two[next_index].clone().value;
+            println!("{} : {}", key.clone(), value.clone());
             result.insert(key,value);
         }
         else {}
