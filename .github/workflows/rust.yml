@@ -1,8 +1,8 @@
 on: [push]
-name: AML CI
+name: Angel Markup CI
 jobs:
   build_and_test:
-    name: AML CI
+    name: Angel Markup CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
