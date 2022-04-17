@@ -1,14 +1,14 @@
-# **A**NGEL **M**ARKUP **L**ANGUAGE :performing_arts: :guitar:
+# **A**NGEL **M**ARKUP **L**ANGUAGE
 
-***Simple data storage with no drama.*** :performing_arts: :guitar:
+***Simple data storage with no drama.***
 
 ![GitHub CI](https://github.com/iamtheblackunicorn/angelmarkup/actions/workflows/rust.yml/badge.svg)
 
-## ABOUT :books:
+## ABOUT
 
 Since I am currently working on the static-site generator oriented towards blogs called ***Acid***, I need a data-storage format which allows comments and doesn't like drama. **A**NGEL **M**ARKUP **L**ANGUAGE is that format.
 
-## INSTALLATION :inbox_tray:
+## INSTALLATION
 
 You should have the following tools installed and available from the command line:
 
@@ -23,7 +23,7 @@ $ cargo install --git https://github.com/iamtheblackunicorn/angelmarkup
 
 This should make the `angelmarkup` binary available from the command line.
 
-## USAGE :hammer:
+## USAGE
 
 ### COMMAND LINE
 
@@ -56,7 +56,7 @@ To use ***Angel Markup's*** library in your Rust code, add this line to wherever
 use angelmarkup::*;
 ```
 
-## CHANGELOG :black_nib:
+## CHANGELOG
 
 ### Version 1.0.0
 
@@ -65,5 +65,5 @@ use angelmarkup::*;
 
 ## NOTE :scroll:
 
-- ***A**NGEL **M**ARKUP **L**ANGUAGE :performing_arts: :guitar:* by Alexander Abraham :black_heart: a.k.a. *"The Black Unicorn" :unicorn:*
+- ***A**NGEL **M**ARKUP **L**ANGUAGE* by Alexander Abraham a.k.a. *"The Black Unicorn"*
 - Licensed under the MIT license.
