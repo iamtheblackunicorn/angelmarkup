@@ -63,7 +63,7 @@ use angelmarkup::*;
 - Initial release.
 - Upload to GitHub.
 
-## NOTE :scroll:
+## NOTE
 
 - ***A**NGEL **M**ARKUP **L**ANGUAGE* by Alexander Abraham a.k.a. *"The Black Unicorn"*
 - Licensed under the MIT license.
