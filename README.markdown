@@ -2,7 +2,7 @@
 
 ***Simple data storage with no drama.*** :performing_arts: :guitar:
 
-![GitHub CI](https://github.com/iamtheblackunicorn/aml/actions/workflows/rust.yml/badge.svg)
+![GitHub CI](https://github.com/iamtheblackunicorn/angelmarkup/actions/workflows/rust.yml/badge.svg)
 
 ## ABOUT :books:
 
@@ -15,19 +15,19 @@ You should have the following tools installed and available from the command lin
 - Rust
 - Git
 
-To install ***AML***, simply run this command from a terminal window:
+To install ***Angel Markup***, simply run this command from a terminal window:
 
 ```bash
-$ cargo install --git https://github.com/iamtheblackunicorn/aml
+$ cargo install --git https://github.com/iamtheblackunicorn/angelmarkup
 ```
 
-This should make the `aml` binary available from the command line.
+This should make the `angelmarkup` binary available from the command line.
 
 ## USAGE :hammer:
 
 ### COMMAND LINE
 
-Assuming the installation worked for you, you can now compile ***AML*** files to ***JSON*** files using this command:
+Assuming the installation worked for you, you can now compile ***Angel Markup*** files to ***JSON*** files using this command:
 
 ```bash
 $ aml -i sample.aml -o sample.json
@@ -43,17 +43,17 @@ $ aml -i sample.aml -o sample.json
 
 ### AS A RUST DEVELOPER
 
-***AML*** is mainly oriented towards developers. If you would like to use the tool's functions, please look at `src/lib.rs`.
-To add ***AML's*** library to your Rust project, add this line to your project's `Cargo.toml`:
+***Angel Markup*** is mainly oriented towards developers. If you would like to use the tool's functions, please look at `src/lib.rs`.
+To add ***Angel Markup's*** library to your Rust project, add this line to your project's `Cargo.toml`:
 
 ```TOML
-aml = { git = "https://github.com/iamtheblackunicorn/aml", version = "1.0.0" }
+angelmarkup = { git = "https://github.com/iamtheblackunicorn/angelmarkup", version = "1.0.0" }
 ```
 
-To use ***AML's*** library in your Rust code, add this line to wherever you want to use ***AML's*** functions:
+To use ***Angel Markup's*** library in your Rust code, add this line to wherever you want to use ***Angel Markup's*** functions:
 
 ```Rust
-use aml::*;
+use angelmarkup::*;
 ```
 
 ## CHANGELOG :black_nib:
