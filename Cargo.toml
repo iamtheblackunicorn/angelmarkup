@@ -2,6 +2,7 @@
 name = "angelmarkup"
 version = "1.0.0"
 edition = "2021"
+license = "MIT"
 authors = ["Alexander Abraham <youreccentricity@outlook.com>"]
 description= "Simple data storage with no drama."
 homepage = "https://github.com/iamtheblackunicorn/angelmarkup"
