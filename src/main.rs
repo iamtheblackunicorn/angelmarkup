@@ -4,7 +4,7 @@ a.k.a. "Angeldust Duke" a.k.a. "The Black Unicorn".
 Licensed under the MIT license.
 */
 
-use aml::*;
+use angelmarkup::*;
 use std::env;
 
 /// AML tiny-ass CLI.
