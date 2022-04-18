@@ -9,9 +9,9 @@ homepage = "https://github.com/iamtheblackunicorn/angelmarkup"
 repository = "https://github.com/iamtheblackunicorn/angelmarkup"
 documentation = "https://github.com/iamtheblackunicorn/angelmarkup"
 readme = "README.markdown"
-keywords = ["command-line-utilities"]
+keywords = ["cli"]
 categories = ["command-line-utilities"]
-#exclude = ["/.github", "sample"]
+exclude = ["/.github", "sample"]
 
 [dependencies]
 regex = "1.5.5"
