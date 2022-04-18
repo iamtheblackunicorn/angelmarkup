@@ -11,7 +11,7 @@ documentation = "https://github.com/iamtheblackunicorn/angelmarkup"
 readme = "README.markdown"
 keywords = ["command-line-utilities"]
 categories = ["command-line-utilities"]
-exclude = ["/.github", "sample"]
+#exclude = ["/.github", "sample"]
 
 [dependencies]
 regex = "1.5.5"
