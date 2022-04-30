@@ -66,6 +66,8 @@ use angelmarkup::*;
 ### Version 1.1.0
 
 - Implemented a small linter.
+- Implemented compilation from AML to JSON.
+- Implemented compilation from AML to TOML.
 - Improved the CLI with the help of `cleasy.`
 - Implemented a `Result` for the `serialize` method.
 - Implemented an error `enum` for Angelmarkup Language code.
