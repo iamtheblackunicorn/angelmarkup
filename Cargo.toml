@@ -1,6 +1,6 @@
 [package]
 name = "angelmarkup"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 license = "MIT"
 authors = ["Alexander Abraham <youreccentricity@outlook.com>"]
@@ -13,6 +13,13 @@ keywords = ["cli"]
 categories = ["command-line-utilities"]
 exclude = ["/.github", "sample"]
 
+[[bin]]
+name = "amlc"
+path = "src/main.rs"
+
 [dependencies]
+toml = "0.5.9"
 regex = "1.5.5"
+cleasy = "1.0.0"
+colored = "2.0.0"
 serde_json = "1.0.79"

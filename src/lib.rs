@@ -4,9 +4,12 @@ a.k.a. "Angeldust Duke" a.k.a. "The Black Unicorn".
 Licensed under the MIT license.
 */
 
+use std::fmt;
 use regex::Regex;
 use std::fs::File;
 use std::fs::write;
+use colored::Colorize;
+use std::error::Error;
 use std::fs::read_to_string;
 use std::collections::HashMap;
 use serde_json::to_string_pretty;
@@ -47,7 +50,7 @@ pub fn has_index(subject: Vec<Token>, index: usize) -> bool {
 
 /// A struct to store and retrieve data
 /// about all lexed tokens.
-#[derive(Clone)]
+#[derive(Clone,Eq,PartialEq)]
 pub struct Token {
     name: String,
     value: String
@@ -64,11 +67,18 @@ impl Default for Token {
     }
 }
 
+impl Token {
+    pub fn to_string(&self) -> String {
+        return format!("{} : {}", self.name, self.value);
+    }
+}
+
 /// A [HashMap] for tokens the lexer recognises.
 pub fn pattern_pool() -> HashMap<String, Regex>{
     let mut pool: HashMap<String, Regex> = HashMap::new();
     pool.insert(String::from("ENTITY"), Regex::new(r"'(.*)'").unwrap());
     pool.insert(String::from("ASSIGN"), Regex::new(r"(=>)").unwrap());
+    pool.insert(String::from("COMMENT"), Regex::new(r"%(.*)").unwrap());
     return pool;
 }
 
@@ -124,24 +134,83 @@ pub fn map_to_aml(user_map: HashMap<String, String>) -> String {
     return result;
 }
 
+/// An error struct
+/// to catch Angelmarkup
+/// errors.
+#[derive(Debug)]
+pub struct AngelMarkupError {
+    details: String
+}
+
+/// Implements a method to instantiate the
+/// struct.
+impl AngelMarkupError {
+    fn new(msg: &str) -> AngelMarkupError {
+        AngelMarkupError{details: msg.to_string()}
+    }
+}
+
+/// Implements stuff for better display.
+impl fmt::Display for AngelMarkupError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f,"{}",self.details)
+    }
+}
+
+/// Implements the error trait.
+impl Error for AngelMarkupError {
+    fn description(&self) -> &str {
+        &self.details
+    }
+}
+
 /// Serializes an AML string into a "HashMap".
-pub fn serialize(src: String) -> HashMap<String, String> {
+pub fn serialize(src: String) -> Result<HashMap<String, String>,AngelMarkupError> {
     let lexed_tokens: Vec<Token> = lex(src);
     let lexed_tokens_clone_one: Vec<Token> = lexed_tokens.clone();
     let lexed_tokens_clone_two: Vec<Token> = lexed_tokens_clone_one.clone();
     let lexed_tokens_clone_three: Vec<Token> = lexed_tokens_clone_two.clone();
     let lexed_tokens_clone_four: Vec<Token> =  lexed_tokens_clone_three.clone();
+    let lexed_tokens_clone_five: Vec<Token> =  lexed_tokens_clone_four.clone();
+    let lexed_tokens_clone_six: Vec<Token> =  lexed_tokens_clone_five.clone();
     let mut result: HashMap<String, String> = HashMap::new();
     for (index,token) in lexed_tokens.into_iter().enumerate() {
         if token.name == String::from("ASSIGN"){
             let last_index: usize = index-1;
             let next_index: usize = index+1;
-            let key: String = lexed_tokens_clone_one[last_index].clone().value;
-            let value: String = lexed_tokens_clone_two[next_index].clone().value;
-            result.insert(key,value);
+            if last_index < lexed_tokens_clone_three.len() && next_index < lexed_tokens_clone_four.len() {
+                let key: String = lexed_tokens_clone_five[last_index.clone()].clone().value;
+                let value: String = lexed_tokens_clone_six[next_index.clone()].clone().value;
+                result.insert(key,value);
+            }
+            else {
+                let msg: String = String::from("Syntax error detected!");
+                return Err(AngelMarkupError::new(&msg));
+            }
         }
+        else if token.name == String::from("COMMENT") {}
         else {}
     }
+    if result.is_empty(){
+        let msg: String = String::from("Result is empty.");
+        return Err(AngelMarkupError::new(&msg));
+    }
+    else {}
+    Ok(result)
+}
+
+/// Lints your AML code.
+/// If everything is A-OK,
+/// "true" is returned.
+pub fn lint(src: String) -> bool {
+    let mut result: bool = false;
+    let match_op = serialize(src);
+    match match_op {
+        Ok(_x) => {
+            result = true;
+        },
+        Err(_e) => {}
+    };
     return result;
 }
 
@@ -176,14 +245,17 @@ pub fn write_to_file(filename: String, contents: String) -> bool {
 
 /// Compiles an AML file to a JSON file.
 pub fn compile_to_json(src: String, target: String) {
+    let src_clone_one: String = src.clone();
+    let src_clone_two: String = src_clone_one.clone();
     let target_clone_one: String = target.clone();
     let target_clone_two: String = target_clone_one.clone();
-    let json_string: String = to_string_pretty(&serialize(read_file(src))).unwrap();
-    create_file(target_clone_one);
-    write_to_file(target_clone_two, json_string);
-}
-
-/// Prints a small error message for the CLI.
-pub fn error_out(){
-    println!("Wrong usage!");
+    if lint(read_file(src_clone_one)) == true {
+        let json_string: String = to_string_pretty(&serialize(read_file(src_clone_two)).unwrap()).unwrap();
+        create_file(target_clone_one);
+        write_to_file(target_clone_two, json_string);
+    }
+    else {
+        let msg: String = format!("An error occurred while parsing your Angelmarkup file.").red().to_string();
+        println!("{}", msg);
+    }
 }

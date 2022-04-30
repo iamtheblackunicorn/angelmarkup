@@ -37,7 +37,7 @@ $ aml -i sample.aml -o sample.json
 
 ```text
 'name' => 'aml'
-// This is a comment.
+%% This is a comment.
 'version' => '1.0.0'
 ```
 
@@ -47,7 +47,7 @@ $ aml -i sample.aml -o sample.json
 To add ***Angel Markup's*** library to your Rust project, add this line to your project's `Cargo.toml`:
 
 ```TOML
-angelmarkup = { git = "https://github.com/iamtheblackunicorn/angelmarkup", version = "1.0.0" }
+angelmarkup = { git = "https://github.com/iamtheblackunicorn/angelmarkup", version = "1.1.0" }
 ```
 
 To use ***Angel Markup's*** library in your Rust code, add this line to wherever you want to use ***Angel Markup's*** functions:
@@ -62,6 +62,13 @@ use angelmarkup::*;
 
 - Initial release.
 - Upload to GitHub.
+
+### Version 1.1.0
+
+- Implemented a small linter.
+- Improved the CLI with the help of `cleasy.`
+- Implemented a `Result` for the `serialize` method.
+- Implemented an error `enum` for Angelmarkup Language code.
 
 ## NOTE
 
