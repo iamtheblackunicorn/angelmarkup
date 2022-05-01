@@ -80,7 +80,7 @@ $ amlc -h
 
 ### IN RUST PROJECTS
 
-To use ***ANGELMARKUP*** to your projects, add this to your `Cargo.toml`:
+To use ***ANGELMARKUP*** in your projects, add this to your `Cargo.toml`:
 
 ```TOML
 [dependencies]
