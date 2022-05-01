@@ -36,6 +36,17 @@ pub fn to_toml(subject:HashMap<String, String>) -> String {
     return result;
 }
 
+/// Converts a HashMap into a Angelmarkup string.
+pub fn to_aml(subject:HashMap<String, String>) -> String {
+    let mut result_list: Vec<String> = Vec::new();
+    for (key, value) in subject.into_iter() {
+        let code_string: String = format!("\'{}\' => \'{}\'", key, value);
+        result_list.push(code_string);
+    }
+    let result: String = result_list.join("\n");
+    return result;
+}
+
 // Checks whether a file exists and
 /// returns a boolean to that effect.
 pub fn file_is(filename: String) -> bool {
@@ -142,17 +153,6 @@ pub fn clean_split(subject: String, split_char: String) -> Vec<String> {
         let new_item: String = item.to_string();
         result.push(new_item);
     }
-    return result;
-}
-
-/// Takes a "HashMap" and rolls an AML string from it.
-pub fn map_to_aml(user_map: HashMap<String, String>) -> String {
-    let mut result_list: Vec<String> = Vec::new();
-    for (key,value) in user_map.into_iter(){
-        let aml_line: String = format!("'{}' => '{}'", key, value);
-        result_list.push(aml_line);
-    }
-    let result: String = result_list.join("\n");
     return result;
 }
 
