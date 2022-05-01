@@ -14,6 +14,28 @@ use std::fs::read_to_string;
 use std::collections::HashMap;
 use serde_json::to_string_pretty;
 
+/// Converts a HashMap into a YAML string.
+pub fn to_yaml(subject:HashMap<String, String>) -> String {
+    let mut result_list: Vec<String> = Vec::new();
+    for (key, value) in subject.into_iter() {
+        let code_string: String = format!("{}: \"{}\"", key, value);
+        result_list.push(code_string);
+    }
+    let result: String = result_list.join("\n");
+    return result;
+}
+
+/// Converts a HashMap into a TOML string.
+pub fn to_toml(subject:HashMap<String, String>) -> String {
+    let mut result_list: Vec<String> = Vec::new();
+    for (key, value) in subject.into_iter() {
+        let code_string: String = format!("{} = \"{}\"", key, value);
+        result_list.push(code_string);
+    }
+    let result: String = result_list.join("\n");
+    return result;
+}
+
 // Checks whether a file exists and
 /// returns a boolean to that effect.
 pub fn file_is(filename: String) -> bool {
@@ -253,6 +275,40 @@ pub fn compile_to_json(src: String, target: String) {
         let json_string: String = to_string_pretty(&serialize(read_file(src_clone_two)).unwrap()).unwrap();
         create_file(target_clone_one);
         write_to_file(target_clone_two, json_string);
+    }
+    else {
+        let msg: String = format!("An error occurred while parsing your Angelmarkup file.").red().to_string();
+        println!("{}", msg);
+    }
+}
+
+/// Compiles an AML file to a YAML file.
+pub fn compile_to_yaml(src: String, target: String) {
+    let src_clone_one: String = src.clone();
+    let src_clone_two: String = src_clone_one.clone();
+    let target_clone_one: String = target.clone();
+    let target_clone_two: String = target_clone_one.clone();
+    if lint(read_file(src_clone_one)) == true {
+        let yml_string: String = to_yaml(serialize(read_file(src_clone_two)).unwrap());
+        create_file(target_clone_one);
+        write_to_file(target_clone_two, yml_string);
+    }
+    else {
+        let msg: String = format!("An error occurred while parsing your Angelmarkup file.").red().to_string();
+        println!("{}", msg);
+    }
+}
+
+/// Compiles an AML file to a TOML file.
+pub fn compile_to_toml(src: String, target: String) {
+    let src_clone_one: String = src.clone();
+    let src_clone_two: String = src_clone_one.clone();
+    let target_clone_one: String = target.clone();
+    let target_clone_two: String = target_clone_one.clone();
+    if lint(read_file(src_clone_one)) == true {
+        let toml_string: String = to_toml(serialize(read_file(src_clone_two)).unwrap());
+        create_file(target_clone_one);
+        write_to_file(target_clone_two, toml_string);
     }
     else {
         let msg: String = format!("An error occurred while parsing your Angelmarkup file.").red().to_string();

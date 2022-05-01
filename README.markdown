@@ -15,46 +15,85 @@ You should have the following tools installed and available from the command lin
 - Rust
 - Git
 
-To install ***Angel Markup***, simply run this command from a terminal window:
+To install ***Angel Markup***, there are two options:
+
+- Install the latest cutting-edge version from GitHub:
 
 ```bash
 $ cargo install --git https://github.com/iamtheblackunicorn/angelmarkup
 ```
 
-This should make the `angelmarkup` binary available from the command line.
+- Install the latest stable version from Rust's package registry:
+
+```bash
+$ cargo install angelmarkup
+```
+
+This should make the `amlc` binary available from the command line.
 
 ## USAGE
 
 ### COMMAND LINE
 
-Assuming the installation worked for you, you can now compile ***Angel Markup*** files to ***JSON*** files using this command:
+Once you have correctly installed ***ANGELMARKUP***, you should have the `amlc` binary available from the command line.
+You can use the compiler in the following ways:
+
+- Compile an ***ANGELMARKUP*** file to YAML:
 
 ```bash
-$ aml -i sample.aml -o sample.json
+$ amlc --inf sample.aml --ouf sample.yml --yml
+# OR
+$ amlc -i sample.aml -o sample.yml -y
 ```
 
-`sample.aml` is fed in, `sample.json` is fed out. `sample.aml` might look something like this:
+- Compile an ***ANGELMARKUP*** file to TOML:
 
-```text
-'name' => 'aml'
-%% This is a comment.
-'version' => '1.0.0'
+```bash
+$ amlc --inf sample.aml --ouf sample.toml --tml
+# OR
+$ amlc -i sample.aml -o sample.toml -t
 ```
 
-### AS A RUST DEVELOPER
+- Compile an ***ANGELMARKUP*** file to JSON:
 
-***Angel Markup*** is mainly oriented towards developers. If you would like to use the tool's functions, please look at `src/lib.rs`.
-To add ***Angel Markup's*** library to your Rust project, add this line to your project's `Cargo.toml`:
+```bash
+$ amlc --inf sample.aml --ouf sample.json --jsn
+# OR
+$ amlc -i sample.aml -o sample.json -j
+```
+
+- Get some version info about the compiler:
+
+```bash
+$ amlc --version
+# OR
+$ amlc -v
+```
+
+- Get some help info about the compiler:
+
+```bash
+$ amlc --help
+# OR
+$ amlc -h
+```
+
+### IN RUST PROJECTS
+
+To use ***ANGELMARKUP*** to your projects, add this to your `Cargo.toml`:
 
 ```TOML
-angelmarkup = { git = "https://github.com/iamtheblackunicorn/angelmarkup", version = "1.1.0" }
+[dependencies]
+angelmarkup = "1.1.0"
 ```
 
-To use ***Angel Markup's*** library in your Rust code, add this line to wherever you want to use ***Angel Markup's*** functions:
+To import ***ANGELMARKUP***'s functions, put this line of code inside your Rust code:
 
 ```Rust
 use angelmarkup::*;
 ```
+
+To refer to ***ANGELMARKUP***'s functions and structs, please click [here](https://github.com/iamtheblackunicorn/angelmarkup/blob/main/src/lib.rs).
 
 ## CHANGELOG
 
@@ -68,6 +107,7 @@ use angelmarkup::*;
 - Implemented a small linter.
 - Implemented compilation from AML to JSON.
 - Implemented compilation from AML to TOML.
+- Implemented compilation from AML to YAML.
 - Improved the CLI with the help of `cleasy.`
 - Implemented a `Result` for the `serialize` method.
 - Implemented an error `enum` for Angelmarkup Language code.
