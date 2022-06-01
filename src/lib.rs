@@ -111,7 +111,7 @@ pub fn pattern_pool() -> HashMap<String, Regex>{
     let mut pool: HashMap<String, Regex> = HashMap::new();
     pool.insert(String::from("ENTITY"), Regex::new(r"'(.*)'").unwrap());
     pool.insert(String::from("ASSIGN"), Regex::new(r"(=>)").unwrap());
-    pool.insert(String::from("COMMENT"), Regex::new(r"%(.*)").unwrap());
+    pool.insert(String::from("COMMENT"), Regex::new(r"#(.*)").unwrap());
     return pool;
 }
 
